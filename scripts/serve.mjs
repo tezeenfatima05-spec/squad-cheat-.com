@@ -4,9 +4,10 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import { resolvePathRedirect } from './redirects.mjs';
 import { resolveCheckoutPathRedirect } from '../src/config/checkout-redirects.mjs';
+import { getDistRoot } from './dist-root.mjs';
 
 const CANONICAL_HOST = 'squad-cheat.com';
-const distDir = path.resolve('dist');
+const distDir = getDistRoot();
 const port = Number(process.env.PORT) || 3000;
 
 const MIME = {

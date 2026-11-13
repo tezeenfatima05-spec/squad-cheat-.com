@@ -7,13 +7,15 @@
   },
   "scripts": {
     "dev": "astro dev --host 127.0.0.1 --port 5847 --force",
-    "build": "node scripts/optimize-images.mjs && astro build && node scripts/prune-dist-images.mjs && node scripts/finalize-sitemap.mjs && node scripts/indexnow.mjs",
-    "preview": "astro preview --host 127.0.0.1 --port 5848",
+    "build": "node scripts/optimize-images.mjs && astro build && node scripts/prune-dist-images.mjs && node scripts/finalize-sitemap.mjs && node scripts/append-checkout-redirects.mjs && node scripts/indexnow.mjs",
+    "preview": "wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
     "start": "node scripts/serve.mjs",
     "astro": "astro",
     "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^14.4.8",
     "@astrojs/sitemap": "^3.7.3",
     "@lucide/astro": "^1.48.0",
     "@starwind-ui/astro": "^1.2.1",
@@ -29,6 +31,7 @@
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "wrangler": "^4.162.0"
   }
 }

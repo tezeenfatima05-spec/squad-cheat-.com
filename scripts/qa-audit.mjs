@@ -1,5 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { getDistRoot } from './dist-root.mjs';
+
+const distRoot = getDistRoot();
 
 function walk(dir, acc = []) {
   for (const f of fs.readdirSync(dir)) {
@@ -13,7 +16,7 @@ function walk(dir, acc = []) {
 const skip = (p) =>
   /404|dota-2-cheats|squad-external-tool-guide|\\cheats\\/.test(p.replace(/\\/g, '/'));
 
-const pages = walk('dist').filter((p) => !skip(p));
+const pages = walk(distRoot).filter((p) => !skip(p));
 const issues = [];
 
 for (const file of pages) {
@@ -21,7 +24,7 @@ for (const file of pages) {
   const route =
     '/' +
     path
-      .relative('dist', path.dirname(file))
+      .relative(distRoot, path.dirname(file))
       .replace(/\\/g, '/')
       .replace(/^\.$/, '');
   const routeNorm = route === '/' ? '/' : `${route}/`;

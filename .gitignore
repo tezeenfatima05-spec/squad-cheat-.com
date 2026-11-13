@@ -26,3 +26,7 @@ pnpm-debug.log*
 # local / legacy artifacts (not part of Astro build)
 .seo-baseline/
 /index.html
+
+# wrangler
+.wrangler/
+.dev.vars*

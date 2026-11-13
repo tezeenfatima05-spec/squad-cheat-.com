@@ -1,10 +1,15 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import cloudflare from '@astrojs/cloudflare';
 import { sitemapSerialize } from './src/config/sitemap.ts';
 
 export default defineConfig({
   site: 'https://squad-cheat.com',
+  output: 'static',
+  adapter: cloudflare({
+    imageService: 'passthrough',
+  }),
   trailingSlash: 'always',
   redirects: {
     '/cheats/': '/products/squad-cheats/',
