@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /go/
+
+Sitemap: https://squad-cheat.com/sitemap.xml
+
+# RSS: https://squad-cheat.com/rss.xml
